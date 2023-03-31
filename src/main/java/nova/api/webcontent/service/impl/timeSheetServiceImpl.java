@@ -1,8 +1,8 @@
-package nova.api.service.impl;
+package nova.api.webcontent.service.impl;
 
-import nova.api.entity.timesheetByCampaign;
-import nova.api.repository.TimesheetRepository;
-import nova.api.service.timesheetService;
+import nova.api.webcontent.entity.timesheetByCampaign;
+import nova.api.webcontent.repository.TimesheetRepository;
+import nova.api.webcontent.service.timesheetService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

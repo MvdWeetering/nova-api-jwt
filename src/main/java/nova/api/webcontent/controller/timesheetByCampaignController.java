@@ -1,12 +1,9 @@
-package nova.api.controller;
+package nova.api.webcontent.controller;
 
-import nova.api.entity.timesheetByCampaign;
-import nova.api.service.timesheetService;
+import nova.api.webcontent.entity.timesheetByCampaign;
+import nova.api.webcontent.service.timesheetService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,10 +13,11 @@ import java.util.List;
 public class timesheetByCampaignController {
     private timesheetService timesheetService;
 
-    public timesheetByCampaignController(nova.api.service.timesheetService timesheetService) {
+    public timesheetByCampaignController(nova.api.webcontent.service.timesheetService timesheetService) {
 
         this.timesheetService = timesheetService;
     }
+    @CrossOrigin("http://localhost:8080")
     @GetMapping ("/campaign")
     public ResponseEntity<List<timesheetByCampaign>> returnTimesheet(@RequestParam("query") String query) {
         return ResponseEntity.ok(timesheetService.returnTimeSheet(query));

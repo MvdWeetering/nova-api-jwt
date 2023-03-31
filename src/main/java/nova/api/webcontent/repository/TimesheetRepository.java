@@ -1,6 +1,6 @@
-package nova.api.repository;
+package nova.api.webcontent.repository;
 
-import nova.api.entity.timesheetByCampaign;
+import nova.api.webcontent.entity.timesheetByCampaign;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

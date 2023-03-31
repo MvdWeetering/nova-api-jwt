@@ -1,6 +1,6 @@
-package nova.api.service;
+package nova.api.webcontent.service;
 
-import nova.api.entity.timesheetByCampaign;
+import nova.api.webcontent.entity.timesheetByCampaign;
 
 import java.util.List;
 
