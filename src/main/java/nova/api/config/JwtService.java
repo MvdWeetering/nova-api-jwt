@@ -6,6 +6,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import java.security.Key;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,7 +44,7 @@ public class JwtService {
         .setClaims(extraClaims)
         .setSubject(userDetails.getUsername())
         .setIssuedAt(new Date(System.currentTimeMillis()))
-        //.setExpiration(new Date(System.currentTimeMillis() + 100000000))
+        .setExpiration(Date.from(ZonedDateTime.now().plusYears(999).toInstant()))
         .signWith(getSignInKey(), SignatureAlgorithm.HS512)
         .compact();
   }
