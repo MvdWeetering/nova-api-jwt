@@ -6,29 +6,30 @@ import java.util.TimeZone;
 
 public class DateTimeCalculations {
 
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    public static String WriteMissionTime(String Tijd, ZoneId ZoneId) {
 
-    public static String WriteMissionTime(LocalDateTime Tijd, DateTimeFormatter formatter, ZoneId ZoneId) {
+        LocalDateTime dateTime = LocalDateTime.parse(Tijd, formatter);
 
         // Local time zone
-        ZonedDateTime LokaalTijd = ZonedDateTime.of(Tijd, ZoneId);
-        //System.out.println("From: " + LokaalTijd);
+        ZonedDateTime LokaalTijd = ZonedDateTime.of(dateTime, ZoneId);
 
         // Convert to GMT
         ZoneId ZoneServer = java.time.ZoneId.of("UTC");
         ZonedDateTime ServerDateTime = LokaalTijd.withZoneSameInstant(ZoneServer);
-        //System.out.println("To: " + ServerDateTime);
+
 
         return ServerDateTime.format(formatter);
     }
 
-    public static String ReadMissionTime(LocalDateTime GMTDateTime,DateTimeFormatter formatter, ZoneId ZoneForeign) {
+    public static String ReadMissionTime(String GMTDateTime, ZoneId ZoneForeign) {
 
-        // GMT
+        LocalDateTime dateTime = LocalDateTime.parse(GMTDateTime, formatter);
+
         ZoneId ZoneGMT = ZoneId.of("UCT");
-        ZonedDateTime GMTTijd = ZonedDateTime.of(GMTDateTime, ZoneGMT);
+        ZonedDateTime GMTTijd = ZonedDateTime.of(dateTime, ZoneGMT);
         //System.out.println("GMT: " + GMTTijd);
 
-        // Convert to Local
         ZonedDateTime foreignDateTime = GMTTijd.withZoneSameInstant(ZoneForeign);
         //System.out.println("Foreign: " + foreignDateTime);
 
@@ -38,14 +39,10 @@ public class DateTimeCalculations {
     public static void main(String[] args) {
 
         String str = "2023-06-28 02:10";
-////
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-		LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
-//
-        System.out.println(WriteMissionTime(dateTime, formatter, ZoneId.of("Australia/Adelaide")));
 
-//      System.out.println();
+        System.out.println(WriteMissionTime(str, ZoneId.of("Australia/Adelaide")));
         System.out.println(str);
     }
 }
+
 
